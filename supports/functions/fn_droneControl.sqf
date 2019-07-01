@@ -1,7 +1,7 @@
 /**
 *  fn_droneControl
 *
-*  Spawns a controlable drone for 1 minute
+*  Spawns a controlable drone for 600 seconds
 *
 *  Domain: Server
 **/
@@ -12,6 +12,7 @@ _dirToPlayer = _uavSpawnPos getDir _player;
 _playerPos = getPos _player;
 
 _player addweapon "B_UavTerminal";
+_player linkItem "B_UavTerminal";
 _player connectTerminalToUAV objNull;
 //_drone = [[_uavSpawnPos select 0, _uavSpawnPos select 1, (_playerPos select 2) + 500], _dirToPlayer + 35, "B_UAV_02_F", WEST] call BIS_fnc_spawnVehicle;
 //_drone = [[_uavSpawnPos select 0, _uavSpawnPos select 1, (_playerPos select 2) + 500], _dirToPlayer + 35, "B_T_VTOL_01_armed_F", WEST] call BIS_fnc_spawnVehicle;
@@ -41,6 +42,7 @@ sleep 2;
 
 daMan = ((crew _supportUav) select 1);
 _bool = _player connectTerminalToUAV _supportUav;
+
 _player remoteControl daMan;
 gunner _supportUav switchCamera "Internal";
 SupportUAV = _supportUav;
@@ -62,4 +64,5 @@ if (alive _supportUav) then {
 	objnull remotecontrol daMan; 
 	player switchCamera 'internal';
   _supportUav setDamage 1;
+
 };

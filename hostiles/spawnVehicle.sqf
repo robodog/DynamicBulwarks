@@ -5,6 +5,7 @@
 *
 *  Domain: Server
 **/
+
 _listVeh = _this select 0;
 for "_i" from 0 to (floor (attkWave / 10) - 1) do {
 	_cfgVehicles = configFile >> "CfgVehicles";
@@ -19,21 +20,7 @@ for "_i" from 0 to (floor (attkWave / 10) - 1) do {
 		
 	};
 
-	//_foundVeh = "";
-	// while {!_found} do {
-		// _checked_veh = _cfgVehicles select round (random _realentries);
-		// _classname = configName _checked_veh;
-		// if (isClass _checked_veh) then { // CHECK IF THE SELECTED ENTRY IS A CLASS
-			// _vehclass = getText (_checked_veh >> "vehicleClass");
-			// _scope = getNumber (_checked_veh >> "scope");
-			// _simulation_paracheck = getText (_checked_veh >> "simulation");
-			// _actual_vehclass = getText (_checked_veh >> "vehicleClass");
-			// if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute" && _classname != "O_MBT_02_arty_F" && _actual_vehclass == "Armored") exitWith {
-				// _foundVeh = _classname;
-				// _found = true;
-			// };
-		// };
-	// };
+
 	_foundVeh = _listVeh call BIS_fnc_selectRandom;
 	_createdVehFnc = [_location, 0, _foundVeh, EAST] call bis_fnc_spawnvehicle;
 	_targetplayer = (selectRandom playableUnits);
@@ -46,4 +33,12 @@ for "_i" from 0 to (floor (attkWave / 10) - 1) do {
 	};
 	(_createdVehFnc select 0) setdir (getDir (_nearRoad));
 	mainZeus addCuratorEditableObjects [[_createdVehFnc select 0], true];
+	_tankcrew = fullCrew (_createdVehFnc select 0);
+	{
+		_x select 0 addEventHandler ["Hit", killPoints_fnc_hit];
+		_x select 0 addEventHandler ["Killed", killPoints_fnc_killed];
+		_x select 0 setVariable ["killPointMulti", HOSTILE_ARMOUR_POINT_SCORE];
+		unitArray = waveUnits select 0;
+		unitArray append [_x select 0];
+	} forEach _tankcrew;
 };
