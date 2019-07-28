@@ -12,6 +12,7 @@ class supports
         class mindConGas {};
         class droneControl {};
         class mineField {};
+		class gunship {};
         class telePlode{};
     };
 };

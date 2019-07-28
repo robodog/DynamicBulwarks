@@ -25,6 +25,10 @@ switch (_type) do {
         // Ragepack is a local effect so it needs to be executed locally
         [] remoteExec ["supports_fnc_ragePack", _player];
     };
+	case ("gunShip"): {
+        [_player, getPos _player] call supports_fnc_gunship;
+    };
+
     case ("armaKart"): {
     [_player] call supports_fnc_armaKart;
     };

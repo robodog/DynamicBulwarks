@@ -105,7 +105,8 @@ BULWARK_SUPPORTITEMS = [
     [4690, "Rage Stimpack",         "ragePack"],
     [5930, "Mind Control Gas",    "mindConGas"],
     [6666, "ARMAKART TM",           "armaKart"],
-    [7500, "Predator Drone",    "droneControl"]
+    [7500, "Predator Drone",    "droneControl"],
+	[8000, "Blackfish Gunship",    "gunShip"]
 ];
 
 /* Objects the Player can buy */
