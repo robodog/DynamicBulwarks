@@ -121,7 +121,10 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
+//lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
+lootHouses = bulwarkCity nearObjects ["Building", BULWARK_RADIUS];
+//lootHouses pushBackUnique( bulwarkCity nearObjects ["Ruins", BULWARK_RADIUS]);
+//lootHouses pushBackUnique( bulwarkCity nearObjects ["Building", BULWARK_RADIUS]);
 
 [] execVM "bulwark\fakToMedkit.sqf";
 

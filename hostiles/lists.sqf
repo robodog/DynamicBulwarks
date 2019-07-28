@@ -57,8 +57,28 @@ List_ZombieSlow = _zombieSlow;
 List_ZombieBoss = _zombieBoss;
 List_ZombieWalker = _zombieWalker;
 
+// _bandits = [];
+// _groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup";
+// _count = count (_groupConfig);
+// for "_x" from 0 to (_count-1) do {
+    // _item=((_groupConfig) select _x);
+    // if (isClass _item) then {
+		// _bandits pushback getText (_item >> "vehicle");
+    // };
+// };
+// List_Bandits = _bandits;
+
 _bandits = [];
-_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup";
+_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_L_F" >> "Infantry" >> "I_L_CriminalGang";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=((_groupConfig) select _x);
+    if (isClass _item) then {
+		_bandits pushback getText (_item >> "vehicle");
+    };
+};
+
+_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_L_F" >> "Infantry" >> "BanditCombatGroup";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
@@ -67,6 +87,7 @@ for "_x" from 0 to (_count-1) do {
     };
 };
 List_Bandits = _bandits;
+
 
 _paraBandits = [];
 _groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "ParaCombatGroup";
@@ -79,8 +100,30 @@ for "_x" from 0 to (_count-1) do {
 };
 List_ParaBandits = _paraBandits;
 
+// _paraBandits = [];
+// _groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_L_F" >> "Infantry" >> "I_L_CriminalGang";
+// _count = count (_groupConfig);
+// for "_x" from 0 to (_count-1) do {
+    // _item=((_groupConfig) select _x);
+    // if (isClass _item) then {
+		// _paraBandits pushback getText (_item >> "vehicle");
+    // };
+// };
+// List_ParaBandits = _paraBandits;
+
+// _eastSoldier = [];
+// _groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad";
+// _count = count (_groupConfig);
+// for "_x" from 0 to (_count-1) do {
+    // _item=((_groupConfig) select _x);
+    // if (isClass _item) then {
+		// _eastSoldier pushback getText (_item >> "vehicle");
+    // };
+// };
+// List_OPFOR = _eastSoldier;
+
 _eastSoldier = [];
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad";
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_R_F" >> "SpecOps" >> "O_R_InfSquad";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
@@ -89,6 +132,9 @@ for "_x" from 0 to (_count-1) do {
     };
 };
 List_OPFOR = _eastSoldier;
+
+
+
 
 _indSoldier = [];
 _groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad";
@@ -101,8 +147,19 @@ for "_x" from 0 to (_count-1) do {
 };
 List_INDEP = _indSoldier;
 
+// _natoSoldier = [];
+// _groupConfig = configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfSquad";
+// _count = count (_groupConfig);
+// for "_x" from 0 to (_count-1) do {
+    // _item=(_groupConfig select _x);
+    // if (isClass _item) then {
+		// _natoSoldier pushback getText (_item >> "vehicle");
+    // };
+// };
+// List_NATO = _natoSoldier;
+
 _natoSoldier = [];
-_groupConfig = configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfSquad";
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "BLU_W_F" >> "Infantry" >> "B_W_InfSquad";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=(_groupConfig select _x);
@@ -112,8 +169,21 @@ for "_x" from 0 to (_count-1) do {
 };
 List_NATO = _natoSoldier;
 
+
+
+// _viper = [];
+// _groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_ViperTeam";
+// _count =  count (_groupConfig);
+// for "_x" from 0 to (_count-1) do {
+    // _item=((_groupConfig) select _x);
+    // if (isClass _item) then {
+		// _viper pushback getText (_item >> "vehicle");
+    // };
+// };
+// List_Viper = _viper;
+
 _viper = [];
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_ViperTeam";
+_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_E_F" >> "Infantry" >> "I_E_InfSquad";
 _count =  count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
@@ -122,6 +192,7 @@ for "_x" from 0 to (_count-1) do {
     };
 };
 List_Viper = _viper;
+
 
 _armouredVehicles = [];
 _cfgVehicles = configFile >> "CfgVehicles";
