@@ -19,8 +19,11 @@ _player connectTerminalToUAV objNull;
 _drone = [[_uavSpawnPos select 0, _uavSpawnPos select 1, (_playerPos select 2) + 500], _dirToPlayer + 35, "B_T_VTOL_01_armed_F", WEST] call BIS_fnc_spawnVehicle;
 
 _supportUav = _drone select 0;
+bigBoy = _supportUav;
 _uavGroup = _drone select 2;
 {_x disableAI 'AUTOCOMBAT'} forEach (units _uavGroup);
+(leader _uavGroup) setCaptive true;
+_supportUav disableTIEquipment true;
 mainZeus addCuratorEditableObjects [[_supportUav], true];
 
 _bulwarkPos = position bulwarkBox;
@@ -31,22 +34,31 @@ _loiterWP setWaypointLoiterRadius 600;
 _loiterWP setWaypointCombatMode "BLUE";
 _uavGroup setCurrentWaypoint _loiterWP;
 
+daMan = ((crew _supportUav) select 3);
 
-
-sleep 2;
-
+sleep 1;
 _bool = _player connectTerminalToUAV _supportUav;
-_player remoteControl gunner _supportUav;
+_player remoteControl daMan ;
 gunner _supportUav switchCamera "Internal";
 _supportUav setVehicleLock "LOCKED";
 _supportUav flyInHeight 250;
  [_supportUav] spawn {
  _supportUav = _this select 0;
- sleep 15;
- waitUntil {sleep 5; ((UAVControl _supportUav) select 1 == '' )};
+ sleep 5;
+ //waitUntil {((UAVControl daMan) select 1 == '' ) || !(alive player)};
+ waitUntil { sleep 5;(cameraon != _supportUav ) || !(alive player) || ((lifeState player) == "INCAPACITATED") || !(alive _supportUav)}; 
+
+ objnull remotecontrol (daMan ); 
+ player switchCamera 'internal';
+ _supportUav flyInHeight 5000;
+ sleep 60;
  _supportUav setDamage 1;
  };
 sleep 600;
 if (alive _supportUav) then {
+	objnull remotecontrol (daMan ); 
+	player switchCamera 'internal';
+	_supportUav flyInHeight 5000;
+	sleep 60;
   _supportUav setDamage 1;
 };
