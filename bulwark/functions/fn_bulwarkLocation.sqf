@@ -7,8 +7,15 @@ _finalCity = nil;
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
-	_houses = nearestObjects [_city, ["house"], 300];
-
+	//_houses = nearestObjects [_city, ["house"], 300];
+	_houses = [];
+	_temphouses = nearestObjects [_city, ["Building"], 300];
+	//_temphouses = nearestObjects [_city, ["Ruins"], 300];
+	{
+		if (count (_x buildingPos -1) >0 ) then {
+			_houses pushBack _x;
+			};
+	} forEach _temphouses;	
 	_options = [];
 
 	// Go through every house and position
@@ -31,8 +38,15 @@ while {isNil "_finalPos"} do {
 		} forEach (_house buildingPos -1);
 
 		// Make sure it's not some crapshack in the middle of nowhere
-		_neighbours = count nearestObjects [_largestPos, ["house"], BULWARK_RADIUS];
-
+		//_neighbours = count nearestObjects [_largestPos, ["house"], BULWARK_RADIUS];
+		_tempneighbours = [];
+		_temp = nearestObjects [_largestPos, ["Building"], BULWARK_RADIUS];
+		{
+			if (count (_x buildingPos -1) >0 ) then {
+				_tempneighbours pushBack _x;
+				};
+		} forEach _temp;
+		_neighbours = count _tempneighbours;
 		// One house, one location. Add it to the list of options
 		if(_largestVolume > 0 && _neighbours > LOOT_HOUSE_DENSITY) then {
 			// See how much water is around

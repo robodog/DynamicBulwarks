@@ -122,7 +122,14 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerColor "ColorWhite";
 
 //lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
-lootHouses = bulwarkCity nearObjects ["Building", BULWARK_RADIUS];
+lootHouses = [];
+_temp = bulwarkCity nearObjects ["Building", BULWARK_RADIUS];
+{
+	if (count (_x buildingPos -1) >0 ) then {
+		lootHouses pushBack _x;
+		};
+} forEach _temp;
+
 //lootHouses pushBackUnique( bulwarkCity nearObjects ["Ruins", BULWARK_RADIUS]);
 //lootHouses pushBackUnique( bulwarkCity nearObjects ["Building", BULWARK_RADIUS]);
 
