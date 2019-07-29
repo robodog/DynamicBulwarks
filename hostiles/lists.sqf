@@ -78,7 +78,7 @@ for "_x" from 0 to (_count-1) do {
     };
 };
 
-_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_L_F" >> "Infantry" >> "BanditCombatGroup";
+_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F"  >> "Infantry" >> "BanditCombatGroup";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
